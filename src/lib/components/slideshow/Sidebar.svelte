@@ -204,7 +204,7 @@
 
 <style>
 	.slideshow-sidebar {
-		z-index: 3;
+		z-index: 100;
 		height: 100vh;
 		position: absolute;
 		background: var(--bg-surface);

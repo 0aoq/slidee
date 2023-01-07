@@ -11,16 +11,59 @@
 	 * @param {string} content
 	 */
 	function cleanContent(content: string) {
+		if (!content) content = "";
+
 		// sanitize strings
 		content = content.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 		// allow certain tags
-		const allowedTags = ["h1", "h2", "h3", "h4", "h5", "text", "b", "i", "strong", "em", "button", "group"];
+		const allowedTags = [
+			// svg
+			"svg",
+			"path",
+			"circle",
+			"path",
+			"rect",
+			"line",
+			"polyline",
+
+			// misc
+			"button",
+			"group",
+			"div",
+
+			// text
+			"h1",
+			"h2",
+			"h3",
+			"h4",
+			"h5",
+			"span",
+			"strong",
+			"em",
+			"b", // must come after button or it breaks regex
+			"i",
+			"p",
+			"a",
+
+			// media
+			"video",
+			"img",
+			"embed",
+			"iframe"
+		];
 
 		for (let tag of allowedTags) {
-			content = content.replaceAll(`&lt;${tag}&gt;`, `<${tag}>`);
+			content = content.replaceAll(
+				new RegExp(`(&lt;)${tag}(?<ATTRS>.*?)(&gt;)`, "gm"),
+				`<${tag} $<ATTRS>>`
+			);
+
 			content = content.replaceAll(`&lt;/${tag}&gt;`, `</${tag}>`);
 		}
+
+		// allow comments
+		content = content.replaceAll(/(&lt;)\!\-\-(.*?)\-\-(&gt;)/g, "");
 
 		// return
 		return content;

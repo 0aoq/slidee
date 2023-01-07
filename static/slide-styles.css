@@ -36,10 +36,7 @@ a {
 
 /* add extra styles */
 
-slide * {
-	position: absolute;
-}
-
-group {
+slide group {
 	display: grid;
+	position: absolute;
 }

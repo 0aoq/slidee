@@ -41,7 +41,7 @@
 					EditorView.updateListener.of((event) => {
 						editorValue = event.state.doc.toString();
 					}),
-					oneDarkTheme
+					// oneDarkTheme
 				],
 				doc: value,
 				parent: editorElement.shadowRoot as any
@@ -56,7 +56,7 @@
 	div {
 		max-height: 100vh;
 		overflow: auto;
-		border: 1px solid var(--bg-surface-low);
+		border-right: 1px solid var(--bg-surface-low);
 		box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
 	}
 </style>

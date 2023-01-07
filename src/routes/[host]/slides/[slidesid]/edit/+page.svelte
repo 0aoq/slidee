@@ -42,8 +42,10 @@
 	function syncSlideshow() {
 		if (!htmlEditor.editor || !cssEditor.editor) return;
 
-		slideshow.slide_details.slides = htmlEditor.editorValue!.split("<SlideSplit />\n\n");
+		slideshow.slide_details.slides = htmlEditor.editorValue!.split("<Split></Split>");
 		slideshow.slide_details.styles = cssEditor.editorValue;
+
+		console.log(slideshow);
 
 		// force slideshow render
 		hideSlideshow = true;
@@ -65,7 +67,7 @@
 		lang="HTML"
 		width="24%"
 		editor={undefined}
-		value={slideshow.slide_details.slides.join("<SlideSplit />\n\n")}
+		value={slideshow.slide_details.slides.join("<Split></Split>")}
 		bind:this={htmlEditor}
 	/>
 
